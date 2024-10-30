@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Carousel</title>
+    <style>
+        .carousel {
+            width: 300px;
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+            margin: auto;
+            background-color: #f3f3f3;
+        }
+
+        .carousel img {
+            width: 100%;
+            height: 100%;
+            display: none;
+            /* Hide all images initially */
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .carousel img.active {
+            display: block;
+        }
+
+        .carousel-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="carousel">
+        <img src="image1.jpg" class="active" alt="Image 1">
+        <img src="image2.jpg" alt="Image 2">
+        <img src="image3.jpg" alt="Image 3">
+    </div>
+    <div class="carousel-buttons">
+        <button id="prev">Previous</button>
+        <button id="next">Next</button>
+    </div>
+
+    <script>
+
+        const images = document.querySelectorAll('.carousel img'); // Select all images
+        const prevButton = document.getElementById('prev');
+        const nextButton = document.getElementById('next');
+        let currentIndex = 0; // Track the currently visible image
+
+        function showImage(index) {
+            images.forEach((img, i) => {
+                img.classList.toggle('active', i === index); // Show the image at the current index
+            });
+        }
+
+        // Next button functionality
+        nextButton.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % images.length; // Increment index and loop back to start
+            showImage(currentIndex);
+        });
+
+        // Previous button functionality
+        prevButton.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + images.length) % images.length; // Decrement index and loop back to end
+            showImage(currentIndex);
+        });
+
+        // Initial display
+        showImage(currentIndex);
+
+    </script>
+</body>
+
+</html>

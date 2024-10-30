@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .display {
+            width: 500px;
+            min-height: 100px;
+            background-color: rgb(202, 99, 99);
+            margin-bottom: 10px;
+            padding: 10px;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="display">Click "Next" or "Prev" to view the content.</div>
+
+    <p class="p1">hello this is 1st</p>
+    <p class="p2">hello this is 2nd</p>
+    <p class="p3">hello this is 3rd</p>
+    <p class="p4">hello this is 4th</p>
+    <p class="p5">hello this is 5th</p>
+
+    <button>Next</button>
+    <button>Prev</button>
+
+    <script>
+        const paragraphs = document.querySelectorAll('p'); // Select all <p> elements
+        const display = document.querySelector('.display');
+        const nextButton = document.getElementsByTagName('button')[0];
+        const prevButton = document.getElementsByTagName('button')[1];
+
+        let currentIndex = 0;
+
+        // Function to update the display content
+        function updateDisplay() {
+            display.innerHTML = paragraphs[currentIndex].innerHTML;
+        }
+
+        // Event listener for "Next" button
+        nextButton.addEventListener("click", () => {
+            currentIndex = (currentIndex + 1); // Loop back to the first item
+            updateDisplay();
+        });
+
+        // Event listener for "Prev" button
+        prevButton.addEventListener("click", () => {
+            currentIndex = (currentIndex - 1); // Loop back to the last item
+            updateDisplay();
+        });
+
+        // Initialize display content
+        updateDisplay();
+    </script>
+</body>
+
+</html>
